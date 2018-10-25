@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B13DA5FC21821C25000C3F1C /* common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B13DA5FB21821C25000C3F1C /* common.framework */; };
+		B13DA5FD21821C25000C3F1C /* common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B13DA5FB21821C25000C3F1C /* common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B173E064218213B4002C270A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B173E063218213B4002C270A /* AppDelegate.swift */; };
 		B173E066218213B4002C270A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B173E065218213B4002C270A /* ViewController.swift */; };
 		B173E069218213B4002C270A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B173E067218213B4002C270A /* Main.storyboard */; };
@@ -33,7 +35,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		B13DA5FE21821C25000C3F1C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B13DA5FD21821C25000C3F1C /* common.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		B13DA5FB21821C25000C3F1C /* common.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = common.framework; path = "../common/build/xcode-frameworks/common.framework"; sourceTree = "<group>"; };
 		B173E060218213B4002C270A /* kotlinios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kotlinios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B173E063218213B4002C270A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B173E065218213B4002C270A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B13DA5FC21821C25000C3F1C /* common.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +95,7 @@
 		B173E057218213B4002C270A = {
 			isa = PBXGroup;
 			children = (
+				B13DA5FB21821C25000C3F1C /* common.framework */,
 				B173E062218213B4002C270A /* kotlinios */,
 				B173E077218213B5002C270A /* kotliniosTests */,
 				B173E082218213B5002C270A /* kotliniosUITests */,
@@ -132,9 +151,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B173E088218213B5002C270A /* Build configuration list for PBXNativeTarget "kotlinios" */;
 			buildPhases = (
+				B173E09521821A77002C270A /* Run Script(Kotlin Native) */,
 				B173E05C218213B4002C270A /* Sources */,
 				B173E05D218213B4002C270A /* Frameworks */,
 				B173E05E218213B4002C270A /* Resources */,
+				B13DA5FE21821C25000C3F1C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -250,6 +271,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B173E09521821A77002C270A /* Run Script(Kotlin Native) */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script(Kotlin Native)";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd $SRCROOT/../common/build/xcode-frameworks/\n./gradlew :common:packForXCode -PXCODE_CONFIGURATION=${CONFIGURATION}\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B173E05C218213B4002C270A /* Sources */ = {
@@ -433,6 +475,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$SRCROOT/../common/build/xcode-frameworks";
 				INFOPLIST_FILE = kotlinios/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -450,6 +494,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$SRCROOT/../common/build/xcode-frameworks";
 				INFOPLIST_FILE = kotlinios/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
